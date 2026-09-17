@@ -8,7 +8,7 @@ die verschiedenen Stabilitätsanalysen. Ausserdem wurden die Permutations- und
 Ablationsanalysen sowie das Clustering umgesetzt.
 
 Auch die Erstellung der verwendeten Abbildungen und Darstellungsmöglichkeiten
-erfolgte mit diesem Code.
+erfolgte mit diesem Code. Verwendet wurde Python 3.12.10 sowie verschiedene Pakete, welche in requirements.txt aufgelistet sind.
 
 ## KI-Verzeichnis
 
