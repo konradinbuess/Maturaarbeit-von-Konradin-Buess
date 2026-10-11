@@ -1503,50 +1503,33 @@ def plot_mds_diagram(politicians=None, p=1.0, weighted_by_votes=True, start_ques
 
 def plot_titel_page_charts():
 
-    # -----------------------------
-    # Daten (ungefähre Werte)
-    # -----------------------------
     daten = [
         [60, 30, 30, 30, 60, 70, 90, 70],
         [30, 30, 60, 70, 90, 70, 60, 30],
         [60, 70, 90, 70, 60, 30, 30, 30]
     ]
-
-
     # Anzahl der Achsen
     n = 8
     winkel = np.linspace(0, 2 * np.pi, n, endpoint=False)
-
     # Polygon schließen
     winkel_geschlossen = np.concatenate([winkel, [winkel[0]]])
-
     # -----------------------------
     # Darstellung
     # -----------------------------
-    fig, axes = plt.subplots(
-        1, 3,
-        figsize=(15, 5.5),
-        subplot_kw={"projection": "polar"}
-    )
-
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5.5), subplot_kw={"projection": "polar"})
     fig.patch.set_facecolor("white")
-
     for ax, werte in zip(axes, daten):
         werte_geschlossen = werte + [werte[0]]
-
         # Orientierung: oben beginnen, im Uhrzeigersinn
         ax.set_theta_offset(np.pi / 2)
         ax.set_theta_direction(-1)
-
         # Skalierung
         ax.set_ylim(0, 100)
         ax.set_yticks([20, 40, 60, 80, 100])
         ax.set_yticklabels([])
-
         # Keine Kategorienamen an den Achsen
         ax.set_xticks(winkel)
         ax.set_xticklabels([])
-
         # Gitternetz
         #ax.yaxis.grid(True, color="#C0C0C0", linewidth=1.5)
         ax.yaxis.grid(
@@ -1576,16 +1559,12 @@ def plot_titel_page_charts():
             markerfacecolor="#1685F8",
             markeredgecolor="#1685F8"
         )
-
         ax.fill(
             winkel_geschlossen,
             werte_geschlossen,
             color="#1685F8",
             alpha=0.15
         )
-
-
-
     # Abstände und Layout
     plt.subplots_adjust(
         left=0.04,
@@ -1594,7 +1573,6 @@ def plot_titel_page_charts():
         bottom=0.08,
         wspace=0.15
     )
-
     # Hochauflösende Ausgabe
     plt.savefig(
         "radar_charts.png",
@@ -1602,15 +1580,12 @@ def plot_titel_page_charts():
         bbox_inches="tight",
         facecolor="white"
     )
-
     plt.show()
-
 
 if __name__ == '__main__':
     all_indices = np.arange(203)
     block_a_indices = all_indices[:150]
     plot_titel_page_charts()
-    '''
     full_results_function(politicians=block_a_indices, p=1.2)
     for axis in range(8):
         permute_axis_mask_True = np.array([i == axis for i in range(8)])
@@ -1639,5 +1614,4 @@ if __name__ == '__main__':
     plot_weighted_net_diagram(politicians=block_a_indices, p=1.2, zero_axes=zero_axes_mask)
     plot_weighted_bar_diagram(politicians=block_a_indices, p=1.2, zero_axes=zero_axes_mask)
     plot_mds_diagram(politicians=block_a_indices, p=1.2)
-    '''
 
